@@ -1,10 +1,10 @@
-// CreateBlog.jsx
+// CreateService.jsx
 import React, { useEffect, useState } from "react";
 import RichTextEditor from "../components/RichTextEditor";
 import { supabase } from "../supabase/supabase";
 import EditorSection from "../components/EditorSection";
 
-const CreateBlog = () => {
+const CreateLibrary = () => {
   const [status, setStatus] = useState("");
   const [formData, setFormData] = useState({});
   const [formType, setFormType] = useState("guide");
@@ -30,7 +30,7 @@ const CreateBlog = () => {
     e.preventDefault();
 
     const { data, error } = await supabase
-      .from("blogs")
+      .from("library")
       .insert([{ ...formData, slug: convertToSlug(formData?.title) }])
       .select();
 
@@ -60,7 +60,7 @@ const CreateBlog = () => {
         className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         <div className="w-full bg-primary col-span-2 p-2 my-3 rounded-md text-white text-center flex flex-row items-center justify-between">
-          {` Create a new blog`}
+          {` Create a new library`}
           <div className=" col-span-1 md:col-span-2 text-right flex flex-row gap-2 items-center justify-end">
             {/* <select
               id="options"
@@ -203,4 +203,4 @@ const CreateBlog = () => {
   );
 };
 
-export default CreateBlog;
+export default CreateLibrary;

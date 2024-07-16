@@ -4,14 +4,15 @@ import { useParams } from "react-router-dom";
 import { supabase } from "../supabase/supabase";
 import DOMPurify from "dompurify";
 
-const Blog = () => {
+const Service = () => {
   const { slug } = useParams();
   const [blog, setBlog] = useState({});
   async function fetchBlogs() {
     let { data: blog, error } = await supabase
-      .from("blogs")
+      .from("services")
       .select("*")
       .eq("slug", slug);
+    console.log("blog: ", blog);
     setBlog(blog[0]);
   }
 
@@ -55,4 +56,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Service;

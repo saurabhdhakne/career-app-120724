@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { IoMdCreate } from "react-icons/io";
+import { MdHomeRepairService } from "react-icons/md";
+import { ImBooks } from "react-icons/im";
 
 const Navbar = () => {
   const { isAuthenticated, isAdmin } = useContext(AppContext);
@@ -11,26 +13,25 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log('handle scroll');
+      console.log("handle scroll");
       if (window.scrollY > 5) {
-        console.log('Add class');
+        console.log("Add class");
         setNavbarBlur(true);
       } else {
         setNavbarBlur(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Cleanup the event listener on component unmount
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-
   const navItems = [
-    { name: "Home", href: "/home", current: false },
+    { name: "Blogs", href: "/blogs", current: false },
     { name: "Services", href: "/services", current: false },
     { name: "Library", href: "/library", current: false },
     { name: "Contact", href: "/contact", current: false },
@@ -50,7 +51,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed w-full z-40 navbar-blur ${navbarBlur ? 'navbar-blur' : ''}`}>
+      <nav
+        className={`fixed w-full z-40 navbar-blur ${
+          navbarBlur ? "navbar-blur" : ""
+        }`}
+      >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             to="/"
@@ -116,10 +121,26 @@ const Navbar = () => {
                       <button
                         onClick={() => navigate("/admin/create-blog")}
                         type="button"
-                        title="Create New"
+                        title="New blog"
                         className="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:ring-lime-300 font-medium rounded-full text-sm p-2  dark:bg-lime-600 dark:hover:bg-lime-700 focus:outline-none dark:focus:ring-lime-800"
                       >
                         <IoMdCreate />
+                      </button>
+                      <button
+                        onClick={() => navigate("/admin/create-service")}
+                        type="button"
+                        title="New Service"
+                        className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm p-2  dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
+                      >
+                        <MdHomeRepairService />
+                      </button>
+                      <button
+                        onClick={() => navigate("/admin/create-library")}
+                        type="button"
+                        title="New Service"
+                        className="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 font-medium rounded-full text-sm p-2  dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
+                      >
+                        <ImBooks />
                       </button>
                     </>
                   )}
@@ -195,16 +216,32 @@ const Navbar = () => {
           {isAuthenticated() ? (
             <>
               {isAdmin() && (
-                <button
-                  onClick={() => {
-                    navigate("/admin/create-blog");
-                    toggleSidenav();
-                  }}
-                  type="button"
-                  className="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-2.5 py-1  dark:bg-lime-600 dark:hover:bg-lime-700 focus:outline-none dark:focus:ring-lime-800"
-                >
-                  Create New
-                </button>
+                <div className="flex gap-2 items-center justify-evenly mb-3">
+                  <button
+                    onClick={() => navigate("/admin/create-blog")}
+                    type="button"
+                    title="New blog"
+                    className="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:ring-lime-300 font-medium rounded-full text-sm p-2  dark:bg-lime-600 dark:hover:bg-lime-700 focus:outline-none dark:focus:ring-lime-800"
+                  >
+                    <IoMdCreate />
+                  </button>
+                  <button
+                    onClick={() => navigate("/admin/create-service")}
+                    type="button"
+                    title="New Service"
+                    className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm p-2  dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
+                  >
+                    <MdHomeRepairService />
+                  </button>
+                  <button
+                    onClick={() => navigate("/admin/create-library")}
+                    type="button"
+                    title="New Service"
+                    className="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 font-medium rounded-full text-sm p-2  dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
+                  >
+                    <ImBooks />
+                  </button>
+                </div>
               )}
               <button
                 onClick={() => {
