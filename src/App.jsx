@@ -11,75 +11,79 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AppContext } from "./context/AppContext";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import Blog from "./pages/Blog";
-import Service from "./pages/Service";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Services from "./pages/Services";
+import Library from "./pages/Library";
+import LibraryPage from "./pages/LibraryPage";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
 
 function App() {
   const { isAuthenticated, isAdmin } = useContext(AppContext);
 
   return (
-    <div className="container mx-auto h-screen">
-      <Router>
-        <Navbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
-        <div className=" container h-[calc(100%-160px)] md:h-[calc(100%-124px)] overflow-y-auto">
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/login" element={<Login />} />
+    <div className="h-screen flex-col items-center justify-center">
+    <Router>
+      <Navbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
+      <div className="">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
 
-            {/* Protected Routes */}
+          {/* Protected Routes */}
 
-            <Route path="/services" element={<Services />}></Route>
-            <Route path="/home" element={<Home />}>
-              <Route path="child1" element={<Child1 />} />
-              <Route path="child2" element={<Child2 />} />
-            </Route>
-            <Route
-              path="/blog/:slug"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Blog />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/service/:slug"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Service />
-                </ProtectedRoute>
-              }
-            />
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/library" element={<Library />}></Route>
+          <Route path="/home" element={<Home />}>
+            <Route path="child1" element={<Child1 />} />
+            <Route path="child2" element={<Child2 />} />
+          </Route>
+          <Route
+            path="/blog/:slug"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <Blog />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/library/:slug"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <LibraryPage />
+              </ProtectedRoute>
+            }
+          />
 
-            {/* Admin Protected Routes */}
-            <Route
-              path="/admin/dashboard"
-              element={
-                <AdminProtectedRoute
-                  isAuthenticated={isAuthenticated}
-                  isAdmin={isAdmin}
-                >
-                  <AdminDashboard />
-                </AdminProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/create-blog"
-              element={
-                <AdminProtectedRoute
-                  isAuthenticated={isAuthenticated}
-                  isAdmin={isAdmin}
-                >
-                  <CreateBlog />
-                </AdminProtectedRoute>
-              }
-            />
-          </Routes>
-        </div>
-        <Footer />
-      </Router>
-    </div>
+          {/* Admin Protected Routes */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <AdminProtectedRoute
+                isAuthenticated={isAuthenticated}
+                isAdmin={isAdmin}
+              >
+                <AdminDashboard />
+              </AdminProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/create-blog"
+            element={
+              <AdminProtectedRoute
+                isAuthenticated={isAuthenticated}
+                isAdmin={isAdmin}
+              >
+                <CreateBlog />
+              </AdminProtectedRoute>
+            }
+          />
+        </Routes>
+      </div>
+      <Footer />
+    </Router>
+  </div>
   );
 }
 

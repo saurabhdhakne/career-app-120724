@@ -33,7 +33,8 @@ const Home = () => {
   }
   return (
     <>
-      <section className="container bg-white dark:bg-dark">
+     <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] dark:bg-dark">
+     <section className="container mx-auto bg-white dark:bg-dark">
         <div className="">
           <div className=" flex flex-wrap">
             <div className="container">
@@ -41,8 +42,8 @@ const Home = () => {
                 <span className="mb-2 block text-lg font-semibold text-primary">
                   Our Services
                 </span>
-                <h2 className="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px]">
-                  Our Recent News
+                <h2 className="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[40px]">
+                  Our Services
                 </h2>
                 <p className="text-base text-body-color dark:text-dark-6">
                   There are many variations of passages of Lorem Ipsum available
@@ -66,6 +67,7 @@ const Home = () => {
             ))}
           </div>
         </div>
+      </section>
       </section>
     </>
   );
