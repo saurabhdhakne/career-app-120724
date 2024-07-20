@@ -30,8 +30,8 @@ const Blog = () => {
   }
 
   return (
-    <div className="container">
-      <div className=" relative w-full h-[100%] flex flex-col items-center justify-center  bg-cover bg-no-repeat bg-[url('https://images.pexels.com/photos/553575/pexels-photo-553575.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')]">
+    <div className="container mx-auto mt-[20px] overflow-y-auto px-2">
+      <div className=" relative w-full h-[300px] flex flex-col items-center justify-center  bg-cover bg-no-repeat bg-[url('https://images.pexels.com/photos/553575/pexels-photo-553575.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')]">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 p-4 text-white text-center">
           <h1 className="text-6xl text-white font-bold my-2">{blog.title}</h1>
