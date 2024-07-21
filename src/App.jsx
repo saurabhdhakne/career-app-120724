@@ -22,6 +22,8 @@ import Blogs from "./pages/Blogs";
 import Service from "./pages/Service";
 import CreateService from "./pages/CreateService";
 import CreateLibrary from "./pages/CreateLibrary";
+import ResetPassword from "./pages/ResetPassword";
+import UpdatePassword from "./pages/UpdatePassword";
 
 function App() {
   const { isAuthenticated, isAdmin } = useContext(AppContext);
@@ -35,6 +37,8 @@ function App() {
             {/* public routes */}
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/update-password" element={<UpdatePassword />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/library" element={<Library />} />

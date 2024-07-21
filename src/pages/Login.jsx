@@ -135,7 +135,7 @@ const Login = () => {
                 type="email"
                 id="confirmEmail"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-light focus:border-primary-light block w-full p-2.5"
-                placeholder="name@flowbite.com"
+                placeholder="name@example.com"
                 required
                 value={formData.confirmEmail}
                 onChange={handleChange}
@@ -207,6 +207,15 @@ const Login = () => {
               ? "Don't have an account? Register"
               : "Already have an account? Sign In"}
           </button>
+          {formType === "login" && (
+            <button
+              type="button"
+              onClick={() => navigate("/reset-password")}
+              className="text-primary hover:text-primary-dark focus:outline-none font-medium text-sm  py-2.5 text-center mt-3"
+            >
+              Forgot password?
+            </button>
+          )}
         </form>
       </div>
     </div>
