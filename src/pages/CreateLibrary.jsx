@@ -1,35 +1,13 @@
-// CreateBlog.jsx
-import React, { useEffect, useRef, useState } from "react";
+// CreateService.jsx
+import React, { useEffect, useState } from "react";
+import RichTextEditor from "../components/RichTextEditor";
 import { supabase } from "../supabase/supabase";
+import EditorSection from "../components/EditorSection";
 
-const CreateBlog = () => {
+const CreateLibrary = () => {
   const [status, setStatus] = useState("");
   const [formData, setFormData] = useState({});
   const [formType, setFormType] = useState("guide");
-  const [content, setContent] = useState('Write Blog here, You Can also add images!!!');
-  const editorRef = useRef();
-
-  useEffect(() => {
-    // Load the CKEditor script dynamically
-    const script = document.createElement('script');
-    script.src = './../public/ckeditor/ckeditor.js';  
-    script.onload = () => {
-      // Initialize CKEditor once the script is loaded
-      window.CKEDITOR.replace(editorRef.current);
-      window.CKEDITOR.instances.editor1.on('change', () => {
-        setContent(window.CKEDITOR.instances.editor1.getData());
-      });
-    };
-    document.body.appendChild(script);
-
-    return () => {
-      // Clean up the CKEditor instance
-      if (window.CKEDITOR.instances.editor1) {
-        window.CKEDITOR.instances.editor1.destroy(true);
-      }
-      document.body.removeChild(script);
-    };
-  }, []);
 
   const handleCoverImageChange = (e) => {
     setCoverImage(e.target.files[0]);
@@ -37,24 +15,23 @@ const CreateBlog = () => {
 
   function convertToSlug(title) {
     if (!title || typeof title !== "string") {
-      return ""; 
+      return ""; // Handle case where title is undefined, null, or not a string
     }
 
     return title
       .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-") 
-      .trim("-"); 
+      .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .replace(/-+/g, "-") // Replace multiple hyphens with a single hyphen
+      .trim("-"); // Trim leading and trailing hyphens
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(typeof content)
-    console.dir({ ...formData, slug: convertToSlug(formData?.title), desc: content })
+
     const { data, error } = await supabase
-      .from("blogs")
-      .insert([{ ...formData, slug: convertToSlug(formData?.title), desc: content }])
+      .from("library")
+      .insert([{ ...formData, slug: convertToSlug(formData?.title) }])
       .select();
 
     if (!error) {
@@ -83,7 +60,7 @@ const CreateBlog = () => {
         className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         <div className="w-full bg-primary col-span-2 p-2 my-3 rounded-md text-white text-center flex flex-row items-center justify-between">
-          {` Create a new blog`}
+          {` Create a new library`}
           <div className=" col-span-1 md:col-span-2 text-right flex flex-row gap-2 items-center justify-end">
             {/* <select
               id="options"
@@ -208,24 +185,22 @@ const CreateBlog = () => {
             required
           />
         </div>
-        <div className="col-12 col-md-12">
-         
-            <textarea
-              className="col-12"
-                name="desc"
-                id="editor1"
-                rows="50"
-                cols="80"
-                ref={editorRef}
-                defaultValue={content}
-                onChange={handleChange}
-            />
-        </div>
-        {content}
+        <div className="col-span-2  ">
+          <label className="block text-sm font-medium text-gray-700">
+            Content
+          </label>
 
+          <RichTextEditor
+            handleChange={handleChange}
+            formData={formData}
+            setFormData={setFormData}
+          />
+
+          {/* <EditorSection /> */}
+        </div>
       </form>
     </div>
   );
 };
 
-export default CreateBlog;
+export default CreateLibrary;

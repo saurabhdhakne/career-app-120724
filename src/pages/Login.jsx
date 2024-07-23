@@ -54,7 +54,7 @@ const Login = () => {
       localStorage.setItem("refreshToken", data?.session.refresh_token);
       localStorage.setItem("user", JSON.stringify(data?.user));
 
-      navigate("/home");
+      navigate("/blogs");
     } else {
       setErrors({ signUp: error.message });
     }
