@@ -126,9 +126,9 @@ export const LandingSection = () => {
           >
             <path d="M6 13L10 3" stroke="currentColor" strokeLinecap="round" />
           </svg>
-          <a
+          <Link
             className="inline-flex items-center gap-x-1.5 text-sm text-blue-600 decoration-2 hover:underline font-medium"
-            href="#"
+            to={"blogs"}
           >
             Check our blogs
             <svg
@@ -145,7 +145,7 @@ export const LandingSection = () => {
             >
               <path d="m9 18 6-6-6-6" />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
