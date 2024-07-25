@@ -12,7 +12,7 @@ const Blogs = () => {
   async function fetchBlogs() {
     let { data: blogs, error } = await supabase
       .from("blogs")
-      .select("title,subtitle,slug,id");
+      .select("title,subtitle,slug,id,thumbnail");
     setAllBlogs(blogs);
   }
 
@@ -47,10 +47,7 @@ const Blogs = () => {
                 key={item.id}
                 data={item}
                 route={"blog"}
-                date="Dec 22, 2023"
-                CardTitle="Meet AutoManage, the best AI management tools"
-                CardDescription="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                image="https://i.ibb.co/Cnwd4q6/image-01.jpg"
+                bucketName={"images"}
               />
             ))}
           </div>

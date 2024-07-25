@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../supabase/supabase";
-import { useNavigate, useParams } from "react-router-dom";
-import DOMPurify from "dompurify";
+import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 
 const Services = () => {
@@ -11,7 +10,7 @@ const Services = () => {
   async function fetchServices() {
     let { data: services, error } = await supabase
       .from("services")
-      .select("title,subtitle,slug,id");
+      .select("title,subtitle,slug,id,thumbnail");
     setServices(services);
   }
 
@@ -52,10 +51,7 @@ const Services = () => {
                   key={item.id}
                   data={item}
                   route={"service"}
-                  date="Dec 22, 2023"
-                  CardTitle="Meet AutoManage, the best AI management tools"
-                  CardDescription="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                  image="https://i.ibb.co/Cnwd4q6/image-01.jpg"
+                  bucketName={"images"}
                 />
               ))}
             </div>

@@ -30,10 +30,11 @@ const Blog = () => {
   }
 
   return (
-    <div className="container">
-      <div className="m-4  overflow-y-auto flex flex-col items-center justify-start">
-        <div dangerouslySetInnerHTML={{ __html: blog?.desc }} />
-      </div>
+    <div className="container mx-auto w-[700px] mt-[20px] overflow-y-auto px-2">
+      <div
+        className="rounded-md p-4 w-full"
+        dangerouslySetInnerHTML={createMarkup(blog.desc)}
+      ></div>
     </div>
   );
 };

@@ -17,9 +17,9 @@ const AdminProtectedRoute = ({ children }) => {
   }
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-between">
+    <div className="w-full flex flex-col items-center justify-between">
       {/* <Navbar /> */}
-      <div className="flex flex-row h-full w-[100%] shadow">
+      <div className="flex flex-row w-[100%]">
         {/* <Sidebar /> */}
         {children}
       </div>
