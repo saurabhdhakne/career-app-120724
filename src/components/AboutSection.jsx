@@ -3,7 +3,7 @@ import React from "react";
 const AboutSection = () => {
   return (
     <>
-      <section className="bg-gray-50 overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] dark:bg-dark">
+      <section className="bg-gray-50 overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] dark:bg-dark px-10 md:px-0">
         <div className="container mx-auto">
           <div className="flex flex-wrap items-center justify-between -mx-4">
             <div className="w-full px-4 lg:w-6/12">
