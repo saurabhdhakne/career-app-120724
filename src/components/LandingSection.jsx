@@ -10,7 +10,7 @@ export const LandingSection = () => {
             className="inline-flex items-center gap-x-2 bg-white border border-gray-200 text-xs text-gray-800 p-1 ps-3 rounded-full transition hover:border-gray-300"
             to={"/contact"}
           >
-            Navigate Your Future with Confidence - Connect with us
+            Navigate Your Future with Confidence
             <span className="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 rounded-full bg-gray-200 font-semibold text-sm text-gray-600">
               <svg
                 className="flex-shrink-0 size-4"
@@ -87,8 +87,8 @@ export const LandingSection = () => {
               <path d="m9 18 6-6-6-6" />
             </svg>
           </Link>
-          <button
-            type="button"
+          <Link
+            to={"services"}
             className="relative group p-2 ps-3 inline-flex items-center gap-x-2 text-sm font-mono rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
           >
             Our Services
@@ -109,7 +109,7 @@ export const LandingSection = () => {
                 <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
               </svg>
             </span>
-          </button>
+          </Link>
         </div>
 
         <div className="mt-5 flex justify-center items-center gap-x-1 sm:gap-x-3">
